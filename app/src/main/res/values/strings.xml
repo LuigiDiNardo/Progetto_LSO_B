@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Progetto_LSO_B</string>
+    <string name="home">Home</string>
+    <string name="search">Cerca</string>
+    <string name="message">Chat</string>
+    <string name="settings">Impostazioni</string>
 </resources>
