@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".OnlineStatusFragment">
+    android:layout_height="match_parent">
 
     <!-- cambiare le icone ed il testo non appena possibile ed aggiustato il codice che lo gestisce -->
     <TextView
