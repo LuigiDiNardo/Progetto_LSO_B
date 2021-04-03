@@ -1,19 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".SettingsFragment">
 
-    <TextView
-        android:id="@+id/tv2"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="166dp"
-        android:layout_marginLeft="166dp"
-        android:layout_marginTop="185dp"
-        android:text="SETTINGS" />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/avatar_ImageView"
+            android:layout_width="130dp"
+            android:layout_height="134dp"
+            android:layout_marginTop="36dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.056"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@android:drawable/ic_menu_gallery" />
+
+        <ImageView
+            android:id="@+id/online_imageView"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="112dp"
+            android:src="@android:drawable/presence_online"
+            app:layout_constraintEnd_toEndOf="@+id/avatar_ImageView"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/avatar_ImageView"
+            app:layout_constraintTop_toTopOf="@+id/avatar_ImageView" />
+
+        <TextView
+            android:id="@+id/nomeUtente_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="Nome Utente"
+            android:textSize="26dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/avatar_ImageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/bio_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="bio"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/avatar_ImageView"
+            app:layout_constraintTop_toBottomOf="@+id/nomeUtente_textView" />
+
+        <TextView
+            android:id="@+id/testoBio_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="Ciao! Sono *nome utente* \n e questa è la mia bio"
+            android:textSize="20dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/avatar_ImageView"
+            app:layout_constraintTop_toBottomOf="@+id/bio_textView" />
+
+        <Button
+            android:id="@+id/userSettings_button"
+            android:layout_width="403dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="60dp"
+            android:background="#00FF0000"
+            android:gravity="left|center"
+            android:text="User Settings"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/testoBio_textView" />
+
+        <Button
+            android:id="@+id/privacy_button"
+            android:layout_width="403dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="116dp"
+            android:background="#00FF0000"
+            android:gravity="left|center"
+            android:text="Privacy"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/testoBio_textView" />
+
+        <Button
+            android:id="@+id/impostNotifiche_button"
+            android:layout_width="403dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="172dp"
+            android:background="#00FF0000"
+            android:gravity="left|center"
+            android:text="Impostazioni Notifiche"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/testoBio_textView" />
+
+        <Button
+            android:id="@+id/appStyle_button"
+            android:layout_width="403dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="228dp"
+            android:background="#00FF0000"
+            android:gravity="left|center"
+            android:text="App Style"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/testoBio_textView" />
+
+        <Button
+            android:id="@+id/logOut_button"
+            android:layout_width="403dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="284dp"
+            android:background="#00FF0000"
+            android:gravity="left|center"
+            android:text="Log Out"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/testoBio_textView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>
