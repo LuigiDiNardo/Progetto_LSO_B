@@ -3,7 +3,6 @@ package com.example.progetto_lso_b;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
-import androidx.navigation.NavHost;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Bundle;
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             first_log=false;
         }
 
-        NavHostFragment navHostFragment= (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        NavHostFragment navHostFragment= (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);//Componente che ci permette di spostarci tra i vari fragment.
         navController=navHostFragment.getNavController();
         BottomNavigationView bottomNavigationView = findViewById(R.id.menu);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);

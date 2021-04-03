@@ -45,13 +45,27 @@
         <action
             android:id="@+id/settingsFragment_to_homeFragment"
             app:destination="@id/homeFragment"/>
-
         <action
             android:id="@+id/settingsFragment_to_chatFragment"
             app:destination="@id/chatFragment"/>
         <action
             android:id="@+id/settingsFragment_to_searchFragment"
             app:destination="@id/searchFragment"/>
+        <action
+            android:id="@+id/action_settingsFragment_to_userSettingsFragment"
+            app:destination="@id/userSettingsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_appStyleFragment"
+            app:destination="@id/appStyleFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_impostNotificheFragment"
+            app:destination="@id/impostNotificheFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_logOutFragment"
+            app:destination="@id/logOutFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_privacyFragment"
+            app:destination="@id/privacyFragment" />
     </fragment>
 
     <fragment
@@ -68,4 +82,29 @@
             android:id="@+id/chatFragment_to_settingsFragement"
             app:destination="@id/settingsFragment"/>
     </fragment>
+    <fragment
+        android:id="@+id/userSettingsFragment"
+        android:name="com.example.progetto_lso_b.UserSettingsFragment"
+        android:label="fragment_user_settings"
+        tools:layout="@layout/fragment_user_settings" />
+    <fragment
+        android:id="@+id/appStyleFragment"
+        android:name="com.example.progetto_lso_b.AppStyleFragment"
+        android:label="fragment_app_style"
+        tools:layout="@layout/fragment_app_style" />
+    <fragment
+        android:id="@+id/impostNotificheFragment"
+        android:name="com.example.progetto_lso_b.ImpostNotificheFragment"
+        android:label="fragment_impost_notifiche"
+        tools:layout="@layout/fragment_impost_notifiche" />
+    <fragment
+        android:id="@+id/logOutFragment"
+        android:name="com.example.progetto_lso_b.LogOutFragment"
+        android:label="fragment_log_out"
+        tools:layout="@layout/fragment_log_out" />
+    <fragment
+        android:id="@+id/privacyFragment"
+        android:name="com.example.progetto_lso_b.PrivacyFragment"
+        android:label="fragment_privacy"
+        tools:layout="@layout/fragment_privacy" />
 </navigation>
