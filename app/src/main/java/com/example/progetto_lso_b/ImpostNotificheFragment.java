@@ -2,6 +2,8 @@ package com.example.progetto_lso_b;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -13,8 +15,26 @@ public class ImpostNotificheFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+        ActionBar actionBar1 = ((AppCompatActivity) getActivity()).getSupportActionBar();
+
+        actionBar1.setDisplayHomeAsUpEnabled(true);
+
         super.onCreate(savedInstanceState);
 
+    }
+
+
+    @Override
+    public void onStop() {
+
+        ActionBar actionBar1 = ((AppCompatActivity) getActivity()).getSupportActionBar();
+
+
+        actionBar1.setDisplayHomeAsUpEnabled(false);
+
+
+        super.onStop();
     }
 
     @Override
