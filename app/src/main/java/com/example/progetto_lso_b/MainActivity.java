@@ -1,10 +1,14 @@
 package com.example.progetto_lso_b;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -17,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     NavController navController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -33,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
     }
+
+
 
     //Listener del menu
     private  BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -61,5 +70,32 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
+
+    //@Override
+   // public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+      /*  switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }*/
+      //  Intent myIntent = new Intent((getApplicationContext()), MainActivity.class);
+      //  startActivityForResult(myIntent,0);
+        //return super.onOptionsItemSelected(item);
+
+       // return super.onOptionsItemSelected(item);
+
+  //  }
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+      if(getFragmentManager().getBackStackEntryCount() == 1) {
+          moveTaskToBack(false);
+      }
+      else {
+          super.onBackPressed();
+      }
+      return true;
+  }
+
 
 }
