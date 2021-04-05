@@ -4,6 +4,18 @@
     <string name="search">Cerca</string>
     <string name="message">Chat</string>
     <string name="settings">Impostazioni</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="visibility">
+        <item>Nessuno</item>
+        <item>100m</item>
+        <item>200m</item>
+        <item>500m</item>
+        <item>1km</item>
+        <item>>1km</item>
+    </string-array>
+    <string-array name="vibration">
+        <item>Nessuna</item>
+        <item>Breve</item>
+        <item>Media</item>
+        <item>Lunga</item>
+    </string-array>
 </resources>

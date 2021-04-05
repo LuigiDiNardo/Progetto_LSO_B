@@ -1,14 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PrivacyFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Privacy" />
 
-</FrameLayout>
+    <Switch
+        android:id="@+id/online_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
+        android:text="Mostra Stato Online"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Switch
+        android:id="@+id/mostrami_in_search_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
+        android:text="Mostrami tra le ricerche"
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/online_switch"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Switch
+        android:id="@+id/mostra_indirizzo_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
+        android:text="Mostra l'indirizzo"
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mostrami_in_search_switch"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/info_mostra_indirizzo_switch_tv"
+        android:layout_width="260dp"
+        android:layout_height="86dp"
+        android:paddingLeft="10dp"
+        android:text="Se attivata, questa opzione ti consentirà di nascondere l'indirizzo dal quale stai usando l'applicazione ma non la città o il paese dell'indirizzo in questione."
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mostra_indirizzo_switch"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/raggio_visibilità_button"
+        android:layout_width="411dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="10dp"
+        android:background="#00FF0000"
+        android:gravity="left|center"
+        android:paddingLeft="10dp"
+        android:text="Raggio di visibilità"
+        android:textAllCaps="false"
+        android:textSize="16dp"
+        android:textColor="#000000"
+        android:textStyle="normal"
+        android:typeface="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info_mostra_indirizzo_switch_tv"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/info_raggio_visibilità_tv"
+        android:layout_width="264dp"
+        android:layout_height="89dp"
+        android:paddingLeft="10dp"
+        android:text="Con questa opzione puoi stabilire il raggio di visibilità del tuo profilo. Ad esempio, se scegli 500m, il tuo profilo sarà visibile dagli utenti entro quel raggio."
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/raggio_visibilità_button"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="143dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="126dp"
+        android:layout_marginBottom="404dp"
+        app:layout_constraintBottom_toBottomOf="@+id/raggio_visibilità_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/raggio_visibilità_button"
+        app:layout_constraintTop_toTopOf="@+id/raggio_visibilità_button"
+        app:layout_constraintVertical_bias="0.237"
+        android:entries="@array/visibility"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

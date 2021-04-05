@@ -45,7 +45,6 @@
         <action
             android:id="@+id/settingsFragment_to_homeFragment"
             app:destination="@id/homeFragment"/>
-
         <action
             android:id="@+id/settingsFragment_to_chatFragment"
             app:destination="@id/chatFragment"/>
