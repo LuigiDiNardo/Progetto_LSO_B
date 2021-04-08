@@ -1,9 +1,14 @@
 package com.example.progetto_lso_b;
 
+import android.app.Dialog;
+import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -60,7 +65,8 @@ public class SettingsFragment extends Fragment {
         appStyleButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_settingsFragment_to_appStyleFragment);
+                Navigation.findNavController(view).navigate(R.id.action_settingsFragment_to_logInFragment2);
+
             }
         });
 
@@ -68,15 +74,41 @@ public class SettingsFragment extends Fragment {
         logOutButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_settingsFragment_to_logOutFragment);
+
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+                alertDialog.setTitle("Log Out");
+                alertDialog.setMessage("Vuoi davvero effettuare il LogOut?");
+                alertDialog.setPositiveButton("Sì",null)
+                           .setNegativeButton("No",null);
+               /* alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                              //  dialog.dismiss();
+                            }
+
+                            });
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                       // dialog.dismiss();
+                    }
+                });*/
+
+                alertDialog.show();
+
+
             }
+
+
+
+
+
+
         });
 
 
+
+
     return view;
-    }
+    }}
 
 
-
-
-}

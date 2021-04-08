@@ -66,6 +66,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_privacyFragment"
             app:destination="@id/privacyFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_logInFragment2"
+            app:destination="@id/logInFragment2" />
     </fragment>
 
     <fragment
@@ -107,4 +110,9 @@
         android:name="com.example.progetto_lso_b.PrivacyFragment"
         android:label="fragment_privacy"
         tools:layout="@layout/fragment_privacy" />
+    <fragment
+        android:id="@+id/logInFragment2"
+        android:name="com.example.progetto_lso_b.LogInFragment"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" />
 </navigation>
