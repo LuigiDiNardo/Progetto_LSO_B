@@ -14,14 +14,17 @@ import android.view.ViewGroup;
 
 public class UserSettingsFragment extends Fragment {
 
-    public UserSettingsFragment() {}
+    public UserSettingsFragment() {
+    }
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
+        //Recupero l'action bar relativa alla activity
         ActionBar actionBar1 = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
+        //Mostra il backbutton
         actionBar1.setDisplayHomeAsUpEnabled(true);
 
         super.onCreate(savedInstanceState);
@@ -34,7 +37,7 @@ public class UserSettingsFragment extends Fragment {
 
         ActionBar actionBar1 = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
-
+        //disattiva il back button quando il fragment viene chiuso
         actionBar1.setDisplayHomeAsUpEnabled(false);
 
 

@@ -10,11 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PrivacyFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class PrivacyFragment extends Fragment {
 
 
@@ -22,8 +18,10 @@ public class PrivacyFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
+        //Recupero l'action bar relativa alla activity
         ActionBar actionBar1 = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
+        //Mostra il backbutton
         actionBar1.setDisplayHomeAsUpEnabled(true);
 
         super.onCreate(savedInstanceState);
@@ -36,7 +34,7 @@ public class PrivacyFragment extends Fragment {
 
         ActionBar actionBar1 = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
-
+        //disattiva il back button quando il fragment viene chiuso
         actionBar1.setDisplayHomeAsUpEnabled(false);
 
 

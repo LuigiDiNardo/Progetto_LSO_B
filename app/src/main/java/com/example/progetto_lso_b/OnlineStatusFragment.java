@@ -20,7 +20,7 @@ public class OnlineStatusFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate il layout per questo fragment
+
         return inflater.inflate(R.layout.online_fragment, container, false);
     }
 }

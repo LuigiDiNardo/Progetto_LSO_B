@@ -16,8 +16,10 @@ public class LogOutFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
+        //Recupero l'action bar relativa alla activity
         ActionBar actionBar1 = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
+        //Mostra il backbutton
         actionBar1.setDisplayHomeAsUpEnabled(true);
 
         super.onCreate(savedInstanceState);
@@ -30,7 +32,7 @@ public class LogOutFragment extends Fragment {
 
         ActionBar actionBar1 = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
-
+        //disattiva il back button quando il fragment viene chiuso
         actionBar1.setDisplayHomeAsUpEnabled(false);
 
 
@@ -40,7 +42,7 @@ public class LogOutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_log_out, container, false);
     }
 }
