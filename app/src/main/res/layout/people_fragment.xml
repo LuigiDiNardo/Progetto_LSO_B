@@ -25,7 +25,7 @@
         app:layout_constraintHorizontal_bias="0.086"
         app:layout_constraintStart_toStartOf="@+id/people_container"
         app:layout_constraintTop_toTopOf="@+id/people_container"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:src="@drawable/people" />
 
     <TextView
         android:id="@+id/people_count"

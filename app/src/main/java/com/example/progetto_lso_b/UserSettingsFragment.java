@@ -33,22 +33,23 @@ public class UserSettingsFragment extends Fragment {
 
 
     @Override
-    public void onStop() {
-
+    public void onPause() {
         ActionBar actionBar1 = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
         //disattiva il back button quando il fragment viene chiuso
         actionBar1.setDisplayHomeAsUpEnabled(false);
 
-
-        super.onStop();
+        super.onPause();
     }
 
+    @Override
+    public void onResume() {
+        ActionBar actionBar1 = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
-
-
-
-
+        //disattiva il back button quando il fragment viene chiuso
+        actionBar1.setDisplayHomeAsUpEnabled(true);
+        super.onResume();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

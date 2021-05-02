@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomePageFragment">
+    tools:context=".HomePageFragment"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -81,12 +82,42 @@
             android:id="@+id/primaDiProcedere_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginBottom="412dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="436dp"
             android:text="Prima di procedere avrei\nbisogno di un po' di\ninformazioni su di te!"
             android:textColor="@color/black"
             android:textSize="34dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/nome_editText"
+            android:layout_width="211dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="348dp"
+            android:background="@drawable/sfondo_edittext"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/username_editText"
+            android:layout_width="211dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="88dp"
+            android:background="@drawable/sfondo_edittext"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -96,45 +127,24 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginBottom="352dp"
+            android:layout_marginBottom="392dp"
             android:text="Qual è il tuo nome?"
             android:textColor="@color/black"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
-            android:id="@+id/nome_editTextDate"
-            android:layout_width="211dp"
-            android:layout_height="32dp"
+        <TextView
+            android:id="@+id/nome_textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginBottom="308dp"
-            android:background="@drawable/sfondo_edittext"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textColor="@color/white"
+            android:layout_marginBottom="132dp"
+            android:text="Imposta un username"
+            android:textColor="@color/black"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <EditText
-            android:id="@+id/cognome_editTextDate"
-            android:layout_width="211dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginEnd="184dp"
-            android:layout_marginRight="184dp"
-            android:layout_marginBottom="220dp"
-            android:background="@drawable/sfondo_edittext"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textColor="@color/white"
-            android:textSize="18dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -143,7 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginBottom="176dp"
+            android:layout_marginBottom="216dp"
             android:text="Quando sei nato/a?"
             android:textColor="@color/black"
             android:textSize="18dp"
@@ -151,22 +161,22 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
-            android:id="@+id/nato_editTextDate"
+            android:id="@+id/nato_editText"
             android:layout_width="211dp"
             android:layout_height="32dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginEnd="184dp"
             android:layout_marginRight="184dp"
-            android:layout_marginBottom="132dp"
+            android:layout_marginBottom="172dp"
             android:background="@drawable/sfondo_edittext"
             android:ems="10"
-            android:inputType="date"
+            android:inputType="datetime"
             android:textColor="@color/white"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -175,11 +185,30 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginBottom="264dp"
+            android:layout_marginBottom="304dp"
             android:text="Il tuo cognome?"
             android:textColor="@color/black"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/cognome_editText"
+            android:layout_width="211dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="184dp"
+            android:layout_marginRight="184dp"
+            android:layout_marginBottom="260dp"
+            android:background="@drawable/sfondo_edittext"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -197,6 +226,21 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph"
+            tools:layout_editor_absoluteX="300dp"
+            tools:layout_editor_absoluteY="369dp" />
+
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
