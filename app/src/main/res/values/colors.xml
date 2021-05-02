@@ -5,6 +5,7 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="background">#00FF0000</color>
         <color name="white">#FFFFFF</color>
+        <color name="bordeaux">#910000</color>
         <color name="yellow">#FFFF00</color>
         <color name="fuchsia">#FF00FF</color>
         <color name="red">#FF0000</color>
@@ -21,4 +22,6 @@
         <color name="navy">#000080</color>
         <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
+    <color name="turchese">#6D9DC5</color>
+
     </resources>

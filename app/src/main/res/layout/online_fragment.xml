@@ -11,13 +11,12 @@
         android:layout_height="107dp"
         android:layout_marginEnd="7dp"
         android:layout_marginRight="7dp"
-        app:layout_constraintBottom_toBottomOf="@+id/online_text"
+        android:src="@drawable/location"
+        app:layout_constraintBottom_toBottomOf="@+id/online_container"
         app:layout_constraintEnd_toEndOf="@id/online_container"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/online_text"
-        app:layout_constraintTop_toTopOf="@+id/online_status"
-        app:layout_constraintVertical_bias="0.0"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="@+id/online_status" />
 
     <TextView
         android:id="@+id/online_status"
@@ -58,15 +57,20 @@
         app:layout_constraintTop_toBottomOf="@+id/online_status"
         app:layout_constraintVertical_bias="0.0" />
 
+
+
     <TextView
         android:id="@+id/online_container"
         android:layout_width="381dp"
         android:layout_height="150dp"
+        android:background="@drawable/border_container"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026"
-        android:background="@drawable/border_container"/>
+        app:layout_constraintVertical_bias="0.026" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
