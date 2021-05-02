@@ -25,6 +25,7 @@
         android:layout_marginTop="12dp"
         android:gravity="bottom"
         android:text="Nome tizio in chat"
+        android:textColor="@color/turchese"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.041"
@@ -38,12 +39,13 @@
         android:gravity="start|center"
         android:text="Frase inviata del tizio"
         android:textSize="12sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toEndOf="@+id/chat_profile_pic"
         app:layout_constraintTop_toBottomOf="@+id/chat_name_text"
-        app:layout_constraintVertical_bias="0.772" />
+        app:layout_constraintVertical_bias="0.35" />
 
     <LinearLayout
         android:layout_width="match_parent"
