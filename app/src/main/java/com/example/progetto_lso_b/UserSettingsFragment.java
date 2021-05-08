@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 
 public class UserSettingsFragment extends Fragment {
 
@@ -23,33 +25,18 @@ public class UserSettingsFragment extends Fragment {
 
         //Recupero l'action bar relativa alla activity
         ActionBar actionBar1 = ((AppCompatActivity) getActivity()).getSupportActionBar();
-
         //Mostra il backbutton
         actionBar1.setDisplayHomeAsUpEnabled(true);
+
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.menu);
+        bottomNavigationView.setVisibility(View.GONE);
 
         super.onCreate(savedInstanceState);
 
     }
 
 
-    @Override
-    public void onPause() {
-        ActionBar actionBar1 = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
-        //disattiva il back button quando il fragment viene chiuso
-        actionBar1.setDisplayHomeAsUpEnabled(false);
-
-        super.onPause();
-    }
-
-    @Override
-    public void onResume() {
-        ActionBar actionBar1 = ((AppCompatActivity) getActivity()).getSupportActionBar();
-
-        //disattiva il back button quando il fragment viene chiuso
-        actionBar1.setDisplayHomeAsUpEnabled(true);
-        super.onResume();
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

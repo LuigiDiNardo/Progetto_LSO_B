@@ -33,18 +33,9 @@ public class HelloUser_fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       // TextView usernameText = getActivity().findViewById(R.id.username_textView);
         View view = inflater.inflate(R.layout.fragment_hello_user_fragment, container, false);
         usernameText = view.findViewById(R.id.usernameFrag_textView);
-
-
-       // SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
-         SharedPreferences sp = getActivity().getSharedPreferences("myKey", getContext().MODE_PRIVATE);
-        username = sp.getString("user",null);
-        usernameText.setText(username);
-
-
+        usernameText.setText(SharedPref.getString("user",null));
 
         return view;
     }

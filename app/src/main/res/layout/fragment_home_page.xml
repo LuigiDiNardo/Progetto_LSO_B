@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomePageFragment"
     >
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/topRettangolo"
@@ -34,6 +30,7 @@
             android:layout_marginEnd="325dp"
             android:layout_marginRight="325dp"
             android:layout_marginBottom="679dp"
+            android:paddingLeft="17dp"
             android:text="Ciao!"
             android:textColor="@color/white"
             android:textSize="36dp"
@@ -52,6 +49,8 @@
             android:layout_marginEnd="222dp"
             android:layout_marginRight="222dp"
             android:layout_marginBottom="657dp"
+            android:paddingStart="23dp"
+            android:paddingLeft="23dp"
             android:text="Benvenuto su *nome app*"
             android:textColor="@color/white"
             android:textSize="16dp"
@@ -70,6 +69,7 @@
             android:layout_marginEnd="42dp"
             android:layout_marginRight="42dp"
             android:layout_marginBottom="548dp"
+            android:paddingLeft="11dp"
             android:text="*Nome app* ti consente di condividere la tua posizione e renderla pubblica agli utenti.\nAvrai la possibilità di conoscere nuovi amici nella tua area e di poter chattare con loro!"
             android:textColor="@color/white"
             android:textSize="16dp"
@@ -80,16 +80,44 @@
 
         <TextView
             android:id="@+id/primaDiProcedere_textView"
-            android:layout_width="wrap_content"
+            android:layout_width="346dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginBottom="436dp"
-            android:text="Prima di procedere avrei\nbisogno di un po' di\ninformazioni su di te!"
+            android:layout_marginBottom="488dp"
+            android:text="Prima di procedere avrei bisogno di un po' di informazioni su di te!"
             android:textColor="@color/black"
-            android:textSize="34dp"
+            android:textSize="23dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/warningCognome_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Non deve contenere\ncaratteri speciali o numeri!"
+            android:textColor="#6D9DC5"
+            android:textSize="11dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/cognome_editText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cognome_editText"
+            app:layout_constraintTop_toTopOf="@+id/cognome_editText"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/warningNome_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Non deve contenere\ncaratteri speciali o numeri!"
+            android:textColor="#6D9DC5"
+            android:textSize="11dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/nome_editText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/nome_editText"
+            app:layout_constraintTop_toTopOf="@+id/nome_editText"
+            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/nome_editText"
@@ -97,86 +125,14 @@
             android:layout_height="32dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginBottom="348dp"
+            android:layout_marginBottom="400dp"
             android:background="@drawable/sfondo_edittext"
             android:ems="10"
+            android:paddingLeft="10dp"
             android:inputType="textPersonName"
             android:textColor="@color/white"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <EditText
-            android:id="@+id/username_editText"
-            android:layout_width="211dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginBottom="88dp"
-            android:background="@drawable/sfondo_edittext"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textColor="@color/white"
-            android:textSize="18dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/nome_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginBottom="392dp"
-            android:text="Qual è il tuo nome?"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/nome_textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginBottom="132dp"
-            android:text="Imposta un username"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/nato_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginBottom="216dp"
-            android:text="Quando sei nato/a?"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <EditText
-            android:id="@+id/nato_editText"
-            android:layout_width="211dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginEnd="184dp"
-            android:layout_marginRight="184dp"
-            android:layout_marginBottom="172dp"
-            android:background="@drawable/sfondo_edittext"
-            android:ems="10"
-            android:inputType="datetime"
-            android:textColor="@color/white"
-            android:textSize="18dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -185,7 +141,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginBottom="304dp"
+            android:layout_marginBottom="356dp"
             android:text="Il tuo cognome?"
             android:textColor="@color/black"
             android:textSize="18dp"
@@ -200,9 +156,10 @@
             android:layout_marginLeft="16dp"
             android:layout_marginEnd="184dp"
             android:layout_marginRight="184dp"
-            android:layout_marginBottom="260dp"
+            android:layout_marginBottom="312dp"
             android:background="@drawable/sfondo_edittext"
             android:ems="10"
+            android:paddingLeft="10dp"
             android:inputType="textPersonName"
             android:textColor="@color/white"
             android:textSize="18dp"
@@ -210,6 +167,77 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/nato_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="268dp"
+            android:text="Quando sei nato/a?"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/nome_textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="184dp"
+            android:text="Imposta un username"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/username_editText"
+            android:layout_width="211dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:paddingLeft="10dp"
+            android:layout_marginBottom="140dp"
+            android:background="@drawable/sfondo_edittext"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/nome_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="444dp"
+            android:text="Qual è il tuo nome?"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/warningUsername_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Non sono ammessi caratteri speciali\nal di fuori delle lettere 'accentate'"
+            android:textColor="#6D9DC5"
+            android:textSize="10dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/username_editText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintStart_toEndOf="@+id/username_editText"
+            app:layout_constraintTop_toTopOf="@+id/username_editText"
+            app:layout_constraintVertical_bias="0.0" />
+
 
         <Button
             android:id="@+id/procedi_button"
@@ -225,23 +253,35 @@
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username_editText"
+            app:layout_constraintVertical_bias="0.821" />
+        <Button
+            android:id="@+id/nascitabutton"
+            android:layout_width="211dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
+            android:text="Scegli una data"
+            android:textAllCaps="false"
+            android:background="@drawable/sfondo_edittext"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nato_textView" />
+    <TextView
+        android:id="@+id/warningDate_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inserisci una data valida"
+        android:textColor="#6D9DC5"
+        android:textSize="11dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/nascitabutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nascitabutton"
+        app:layout_constraintTop_toTopOf="@+id/nascitabutton" />
 
 
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/nav_graph"
-            tools:layout_editor_absoluteX="300dp"
-            tools:layout_editor_absoluteY="369dp" />
-
-
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
