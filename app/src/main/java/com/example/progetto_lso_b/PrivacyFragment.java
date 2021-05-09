@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 
 public class PrivacyFragment extends Fragment {
 
@@ -20,26 +22,17 @@ public class PrivacyFragment extends Fragment {
 
         //Recupero l'action bar relativa alla activity
         ActionBar actionBar1 = ((AppCompatActivity) getActivity()).getSupportActionBar();
-
         //Mostra il backbutton
         actionBar1.setDisplayHomeAsUpEnabled(true);
+
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.menu);
+        bottomNavigationView.setVisibility(View.GONE);
 
         super.onCreate(savedInstanceState);
 
     }
 
 
-    @Override
-    public void onStop() {
-
-        ActionBar actionBar1 = ((AppCompatActivity) getActivity()).getSupportActionBar();
-
-        //disattiva il back button quando il fragment viene chiuso
-        actionBar1.setDisplayHomeAsUpEnabled(false);
-
-
-        super.onStop();
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
