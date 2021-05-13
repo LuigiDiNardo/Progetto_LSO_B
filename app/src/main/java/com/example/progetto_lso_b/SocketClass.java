@@ -31,7 +31,6 @@ public class SocketClass { //singleton per la socket
         try {
             dataOutputStream=new DataOutputStream(sock.getOutputStream());
             dataOutputStream.writeBytes(value);
-            dataOutputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
             Log.e("DATAOUTPUTSTREAM","Impossibile ricavare l'outputstream dalla socket!");
@@ -46,13 +45,15 @@ public class SocketClass { //singleton per la socket
                 value = String.valueOf(dataInputStream.readInt());
             }
             else if(type == String.class){
-                value = dataInputStream.readUTF();//leggere stringhe in formato UTF
+                byte[] data = new byte[256];
+                dataInputStream.read(data);
+                value=String.valueOf(data);
+
             }
             else if(type == Double.class){
                 value = String.valueOf(dataInputStream.readDouble());
             }
             else throw new IllegalStateException();
-            dataInputStream.close();
             return value;
         } catch (IOException e ) {
             e.printStackTrace();

@@ -1,22 +1,22 @@
 package com.example.progetto_lso_b;
 
-import android.app.Dialog;
-import android.app.FragmentManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.view.KeyEvent;
+import android.text.Editable;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -25,10 +25,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class SettingsFragment extends Fragment {
 
     private TextView tv;
+    private TextView Bio;
+    private TextView testoBio;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
     }
 
@@ -79,48 +83,63 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 //Navigation.findNavController(view).navigate(R.id.action_settingsFragment_to_homePageFragment);
 
+               // getContext().getTheme().applyStyle(R.style.DarkTheme, true);
+
+
+
             }
         });
 
-        Button logOutButton = view.findViewById(R.id.logOut_button);
-        logOutButton.setOnClickListener(new View.OnClickListener(){
+
+
+        Bio = view.findViewById(R.id.cambiaBio2_textView);
+       // Bio.setText(SharedPreferencesManager.read(SharedPreferencesManager.AGE,null));
+        Bio.setText(SharedPref.getString("bio",null));
+        testoBio = view.findViewById(R.id.cambiaBio2_textView);
+        testoBio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                final EditText edittext = new EditText(getActivity());
+                alert.setMessage("Inserisci la tua bio...");
+                alert.setTitle("Biografia");
 
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-                alertDialog.setTitle("Log Out");
-                alertDialog.setMessage("Vuoi davvero effettuare il LogOut?");
-                alertDialog.setPositiveButton("Sì",null)
-                           .setNegativeButton("No",null);
-               /* alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "No", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                              //  dialog.dismiss();
-                            }
+                alert.setView(edittext);
 
-                            });
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Si", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                       // dialog.dismiss();
+                alert.setPositiveButton("Yes Option", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+
+                        Editable testo = edittext.getText();
+                        SharedPref.putString("bio",testo.toString());
+                        //SharedPreferencesManager.write(SharedPreferencesManager.AGE, testo.toString());
+                       // Bio.setText(SharedPreferencesManager.read(SharedPreferencesManager.AGE,null));
+                        Bio.setText(SharedPref.getString("bio",null));
+
+                        //testoBio.setText(testo);
+
+                        //OR
+                        // String YouEditTextValue = edittext.getText().toString();
                     }
-                });*/
+                });
+                // SharedPreferencesManager.write(SharedPreferencesManager.AGE, testo);
+                //  Bio.setText(SharedPreferencesManager.read(SharedPreferencesManager.AGE,null));
 
-                alertDialog.show();
+                alert.setNegativeButton("No Option", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
 
+                    }
+                });
 
+                alert.show();
             }
-
-
-
-
-
-
         });
 
 
 
 
     return view;
+
+
     }}
 
 

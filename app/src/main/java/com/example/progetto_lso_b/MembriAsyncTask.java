@@ -9,7 +9,8 @@ import org.osmdroid.views.MapView;
 
 import java.net.Socket;
 
-public class MembriAsyncTask extends AsyncTask {
+public class
+MembriAsyncTask extends AsyncTask {
     private MapView map=null;
     Context context;
     private SocketClass sock;
