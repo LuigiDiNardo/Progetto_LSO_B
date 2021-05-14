@@ -5,62 +5,57 @@ import android.util.Log;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketAddress;
 
 public class SocketClass { //singleton per la socket
-    private static Socket sock=null;
+    private static Socket sock;
     private static SocketClass socket;
-    private static DataOutputStream dataOutputStream=null;
-    private static DataInputStream dataInputStream=null;
+    private static final SocketAddress address= new InetSocketAddress("51.144.166.40", 3557);
 
 
-    private SocketClass(){}
+    private SocketClass() {
+    }
+
     public static SocketClass getInstance() {
         if (sock == null) {
             try {
-                sock = new Socket("51.144.166.40" , 3557);
-                Log.d("SOCKET","Riuscita la connessione!");
+                sock = new Socket("51.144.166.40", 3557);
+                Log.d("SOCKET", "Riuscita la connessione!");
             } catch (IOException e) {
-                Log.e("SOCKET","Errore stabilimento connessione con il server!");
+                Log.e("SOCKET", "Errore stabilimento connessione con il server!");
             }
         }
         return socket;
     }
 
-    public static void writeData(String value){
+    public static void writeData(String value) {
         try {
-            dataOutputStream=new DataOutputStream(sock.getOutputStream());
+            DataOutputStream dataOutputStream = new DataOutputStream(sock.getOutputStream());
             dataOutputStream.writeBytes(value);
-            dataOutputStream.close();
+            if(!sock.isConnected())
+                sock.connect(address);
+            sock.shutdownOutput();
+            Log.d("YOUMAN", "andata bene la scrittura");
         } catch (IOException e) {
             e.printStackTrace();
-            Log.e("DATAOUTPUTSTREAM","Impossibile ricavare l'outputstream dalla socket!");
+            Log.e("DATAOUTPUTSTREAM", "Impossibile ricavare l'outputstream dalla socket!");
         }
     }
 
-    public static String readData(Class<?> type){
+    public static String readData() {
         String value;
+        byte[] stringa = new byte[256];
         try {
-            dataInputStream=new DataInputStream(sock.getInputStream());
-            if(type == int.class){
-                value = String.valueOf(dataInputStream.readInt());
-            }
-            else if(type == String.class){
-                value = dataInputStream.readUTF();//leggere stringhe in formato UTF
-            }
-            else if(type == Double.class){
-                value = String.valueOf(dataInputStream.readDouble());
-            }
-            else throw new IllegalStateException();
-            dataInputStream.close();
+            DataInputStream dataInputStream = new DataInputStream(sock.getInputStream());
+            dataInputStream.read(stringa);
+            value = new String(stringa);
+            value = value.replaceAll("\u0000", "");
+            Log.d("YOUMAN", "lettura andata a buon fine: "+value);
             return value;
-        } catch (IOException e ) {
+        } catch (IOException e) {
             e.printStackTrace();
-            Log.e("DATAINPUTSTREAM","Impossibile ricavare l'inputstream dalla socket!");
-            return null;
-        } catch(IllegalStateException e){
-            e.printStackTrace();
-            Log.e("DATAINPUTSTREAM","Tipo non riconosciuto!");
             return null;
         }
     }
@@ -68,10 +63,9 @@ public class SocketClass { //singleton per la socket
     public static void closeSocket(){
         try {
             sock.close();
-        } catch (IOException e) {
+        }catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
 }
