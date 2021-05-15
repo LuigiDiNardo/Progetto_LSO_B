@@ -9,12 +9,10 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.Manifest;
-import android.app.ActionBar;
-import android.content.Intent;
+
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -26,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String[] permessi = new String[]{
             Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE};
     private final static int requestcode = 1;
+    private NavHostFragment navHostFragment;
 
 
     @Override
@@ -38,15 +37,8 @@ public class MainActivity extends AppCompatActivity {
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this,permessi,requestcode);
         }
-        if (first_log){ //se è la prima volta che si va nella home si carica automaticamente il fragment; altrimenti lo gestisce il navController (guarda sotto)
-            getSupportFragmentManager().beginTransaction().replace(R.id.hello_frame, new HelloUser_fragment()).commit();
-            getSupportFragmentManager().beginTransaction().replace(R.id.online_frame, new OnlineStatusFragment()).commit();
-            getSupportFragmentManager().beginTransaction().replace(R.id.people_frame, new PeopleFragment()).commit();
-            getSupportFragmentManager().beginTransaction().replace(R.id.messages_frame, new MessagesFragment()).commit();
-            first_log=false;
-        }
 
-        NavHostFragment navHostFragment= (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);//Componente che ci permette di spostarci tra i vari fragment.
+        navHostFragment= (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);//Componente che ci permette di spostarci tra i vari fragment.
         navController=navHostFragment.getNavController();
         BottomNavigationView bottomNavigationView = findViewById(R.id.menu);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
@@ -64,12 +56,6 @@ public class MainActivity extends AppCompatActivity {
                     switch(item.getItemId()){//cliccando un icona del menu ne otterremo l'id
                         case R.id.Home:
                             navController.navigate(R.id.homeFragment);
-                            getSupportFragmentManager().beginTransaction().replace(R.id.hello_frame, new HelloUser_fragment()).commit();
-                            getSupportFragmentManager().beginTransaction().replace(R.id.online_frame, new OnlineStatusFragment()).commit();
-                            getSupportFragmentManager().beginTransaction().replace(R.id.people_frame, new PeopleFragment()).commit();
-                            getSupportFragmentManager().beginTransaction().replace(R.id.messages_frame, new MessagesFragment()).commit();
-
-
                             break;
                         case R.id.Message:
                             navController.navigate(R.id.chatFragment);
@@ -98,31 +84,5 @@ public class MainActivity extends AppCompatActivity {
     public static int getRequestcode() {
         return requestcode;
     }
-
-    //@Override
-   // public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-      /*  switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
-        }*/
-      //  Intent myIntent = new Intent((getApplicationContext()), MainActivity.class);
-      //  startActivityForResult(myIntent,0);
-        //return super.onOptionsItemSelected(item);
-
-       // return super.onOptionsItemSelected(item);
-
-  //  }
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-      if(getFragmentManager().getBackStackEntryCount() == 1) {
-          moveTaskToBack(false);
-      }
-      else {
-          super.onBackPressed();
-      }
-      return true;
-  }
-
 
 }
