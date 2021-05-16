@@ -10,7 +10,8 @@ import org.osmdroid.views.MapView;
 import java.net.Socket;
 import java.net.SocketAddress;
 
-public class MembriAsyncTask extends AsyncTask {
+public class
+MembriAsyncTask extends AsyncTask {
     private MapView map=null;
     private double latitude,longitude;
     Context context;

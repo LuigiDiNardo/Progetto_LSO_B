@@ -132,13 +132,15 @@ public class HomePageFragment extends AppCompatActivity {
                 int anno = calendar.get(Calendar.YEAR);
                 int mese = calendar.get(Calendar.MONTH);
                 int giorno = calendar.get(Calendar.DAY_OF_MONTH);
+
                 TextView tv = findViewById(R.id.warningDate_textView);
                 @Override
                 public void onClick(View view) {
                     DatePickerDialog datePickerDialog = new DatePickerDialog(HomePageFragment.this, new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                            natoButton.setText(day + "/" + month + "/" + year);
+                            int mont=month+1;
+                            natoButton.setText(day + "/" + mont + "/" + year);
                             if(year<1921 || year>2006){
                                 tv.setText("Devi avere tra i 99 ed i 16 anni\nper usare l'app");
                                 tv.setVisibility(View.VISIBLE);
@@ -153,7 +155,7 @@ public class HomePageFragment extends AppCompatActivity {
                                 }
                             }
                         }
-                    }, anno, mese, giorno);
+                    }, anno, mese+1, giorno);
                     datePickerDialog.show();
 
                 }

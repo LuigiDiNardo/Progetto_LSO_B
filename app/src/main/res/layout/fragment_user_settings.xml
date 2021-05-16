@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/avatar_UserSettings_imageView"
             android:layout_width="187dp"
             android:layout_height="162dp"
@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/nomeUtente_UserSettings_textView"
+            android:id="@+id/UserSettings_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -45,35 +45,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nomeUtente_UserSettings_textView" />
-
-        <View
-            android:id="@+id/userSettings_divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="68dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cambiaFoto_textView" />
+            app:layout_constraintTop_toBottomOf="@+id/UserSettings_textView" />
 
         <View
             android:id="@+id/userSettings_divider2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="120dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cambiaFoto_textView" />
-
-        <View
-            android:id="@+id/userSettings_divider7"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="332dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -95,10 +73,10 @@
             android:id="@+id/userSettings_divider6"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="276dp"
+            android:layout_marginTop="68dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cambiaFoto_textView" />
 
@@ -114,97 +92,59 @@
             app:layout_constraintTop_toBottomOf="@+id/cambiaFoto_textView" />
 
         <TextView
-            android:id="@+id/boxCambioGenere_textView"
-            android:layout_width="412dp"
-            android:layout_height="54dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/userSettings_divider" />
-
-        <TextView
             android:id="@+id/boxCambioBio_textView"
             android:layout_width="412dp"
             android:layout_height="54dp"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="68dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/userSettings_divider" />
-
-        <TextView
-            android:id="@+id/boxCambioDataNascita_textView"
-            android:layout_width="412dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="104dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/userSettings_divider" />
+            app:layout_constraintTop_toBottomOf="@+id/cambiaFoto_textView" />
 
         <TextView
             android:id="@+id/boxCambioNickname_textView"
             android:layout_width="412dp"
             android:layout_height="54dp"
-            android:layout_marginTop="156dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/userSettings_divider" />
+            app:layout_constraintTop_toBottomOf="@+id/boxCambioDataNascita_textView" />
 
         <TextView
-            android:id="@+id/boxCambioNickname_textView2"
+            android:id="@+id/boxCambioDataNascita_textView"
             android:layout_width="412dp"
             android:layout_height="54dp"
-            android:layout_marginTop="559dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/cambiaGenere_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Cambia Genere"
-            app:layout_constraintEnd_toEndOf="@+id/boxCambioGenere_textView"
-            app:layout_constraintHorizontal_bias="0.05"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/boxCambioGenere_textView" />
-
-        <TextView
-            android:id="@+id/gender_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Maschio"
-            android:textColor="@color/turchese"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.955"
-            app:layout_constraintStart_toStartOf="@+id/boxCambioGenere_textView"
-            app:layout_constraintTop_toTopOf="@+id/boxCambioGenere_textView" />
+            app:layout_constraintTop_toBottomOf="@+id/boxCambioBio_textView" />
 
         <TextView
             android:id="@+id/cambiaBio_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="17dp"
             android:text="Cambia Bio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.047"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userSettings_divider2" />
+            app:layout_constraintTop_toTopOf="@+id/boxCambioBio_textView" />
 
         <TextView
             android:id="@+id/bioSettings_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="14dp"
             android:text="Ciao so..."
+            android:lines= "1"
+            android:ems= "3"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:textColor="@color/turchese"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.968"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/boxCambioGenere_textView" />
+            app:layout_constraintTop_toTopOf="@+id/boxCambioBio_textView" />
 
         <TextView
             android:id="@+id/cambiaDataNascita_textView"
@@ -212,13 +152,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="470dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="248dp"
             android:layout_marginRight="248dp"
             android:text="Cambia Data Di Nascita"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/boxCambioDataNascita_textView" />
 
         <TextView
             android:id="@+id/dataDiNascita_textView"
@@ -226,14 +166,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="342dp"
             android:layout_marginLeft="342dp"
-            android:layout_marginTop="470dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:text="26/10/81"
             android:textColor="@color/turchese"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/boxCambioDataNascita_textView" />
 
         <TextView
             android:id="@+id/cambiaNickname_textView"
@@ -241,13 +181,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginLeft="18dp"
-            android:layout_marginTop="523dp"
+            android:layout_marginTop="14dp"
             android:layout_marginEnd="279dp"
             android:layout_marginRight="279dp"
             android:text="Cambia Nickname"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/boxCambioNickname_textView" />
 
         <TextView
             android:id="@+id/Nickname_textView"
@@ -255,43 +195,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="343dp"
             android:layout_marginLeft="343dp"
-            android:layout_marginTop="521dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="17dp"
             android:layout_marginRight="17dp"
             android:text="Rossi53"
             android:textColor="@color/turchese"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/cambiaPassword_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="21dp"
-            android:layout_marginLeft="21dp"
-            android:layout_marginTop="574dp"
-            android:layout_marginEnd="276dp"
-            android:layout_marginRight="276dp"
-            android:text="Cambia Password"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/password_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="342dp"
-            android:layout_marginLeft="342dp"
-            android:layout_marginTop="574dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:text="********"
-            android:textColor="@color/turchese"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/boxCambioNickname_textView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

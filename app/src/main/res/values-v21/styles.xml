@@ -8,4 +8,11 @@
         <item name="colorAccent">#6D9DC5</item>
         <item name="android:statusBarColor">#6D9DC5</item>
     </style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <item name="android:forceDarkAllowed">true</item>
+        ...
+    </style>
+
+
+
 </resources>

@@ -54,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="@+id/nomeUtente_textView" />
 
         <TextView
-            android:id="@+id/testoBio_textView"
+            android:id="@+id/cambiaBio2_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
@@ -70,16 +70,17 @@
             android:id="@+id/userSettings_button"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:paddingLeft="10dp"
-            android:layout_marginTop="60dp"
             android:background="#00FF0000"
             android:gravity="left|center"
+            android:paddingLeft="10dp"
             android:text="User Settings"
             android:textAllCaps="false"
             app:layout_constraintBottom_toTopOf="@+id/privacy_button"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/testoBio_textView" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/privacy_button"
@@ -94,7 +95,7 @@
             app:layout_constraintBottom_toTopOf="@+id/impostNotifiche_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/testoBio_textView" />
+            app:layout_constraintTop_toBottomOf="@+id/cambiaBio2_textView" />
 
         <Button
             android:id="@+id/impostNotifiche_button"
@@ -109,7 +110,7 @@
             app:layout_constraintBottom_toTopOf="@+id/appStyle_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/testoBio_textView" />
+            app:layout_constraintTop_toBottomOf="@+id/cambiaBio2_textView" />
 
         <Button
             android:id="@+id/appStyle_button"
@@ -121,32 +122,18 @@
             android:paddingLeft="10dp"
             android:text="App Style"
             android:textAllCaps="false"
-            app:layout_constraintBottom_toTopOf="@+id/logOut_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/testoBio_textView" />
-
-        <Button
-            android:id="@+id/logOut_button"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="284dp"
-            android:background="#00FF0000"
-            android:paddingLeft="10dp"
-            android:gravity="left|center"
-            android:text="Log Out"
-            android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/testoBio_textView" />
+            app:layout_constraintTop_toBottomOf="@+id/cambiaBio2_textView" />
 
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="54dp"
+            android:layout_marginTop="36dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -185,14 +172,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appStyle_button" />
-
-        <View
-            android:id="@+id/divider6"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logOut_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

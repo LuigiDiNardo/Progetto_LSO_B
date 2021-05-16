@@ -44,7 +44,7 @@ public class SocketClass { //singleton per la socket
         }
     }
 
-    public static String readData() {
+     public static String readData() {
         String value;
         byte[] stringa = new byte[256];
         try {
