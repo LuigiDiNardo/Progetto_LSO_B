@@ -18,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -43,6 +45,7 @@ public class SearchFragment extends Fragment {
     }
 
 
+    @Nullable
     private Location getLocation() {
 
         Location bestLocation = null;
@@ -79,11 +82,11 @@ public class SearchFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MembriAsyncTask task= new MembriAsyncTask(getActivity().getApplicationContext());
+        MembriAsyncTask task= new MembriAsyncTask(getContext(),latitudine,longitudine);
         task.execute();
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_search, container, false);
@@ -102,7 +105,7 @@ public class SearchFragment extends Fragment {
                 latitudine = location.getLatitude();
                 longitudine = location.getLongitude();
             } else {
-                Toast.makeText(getContext(), "locazione nulla", Toast.LENGTH_SHORT);
+                Toast.makeText(getContext(), "locazione nulla", Toast.LENGTH_SHORT).show();
                 return view;
             }
             //si inizializza la configurazione in osmdroid

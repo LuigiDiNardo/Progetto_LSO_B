@@ -1,5 +1,6 @@
 package com.example.progetto_lso_b;
 
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -10,8 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+
 import android.text.Editable;
 import android.view.ContextThemeWrapper;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,11 +84,10 @@ public class SettingsFragment extends Fragment {
         appStyleButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+              
                 //Navigation.findNavController(view).navigate(R.id.action_settingsFragment_to_homePageFragment);
 
                // getContext().getTheme().applyStyle(R.style.DarkTheme, true);
-
-
 
             }
         });
@@ -93,7 +95,7 @@ public class SettingsFragment extends Fragment {
 
 
         Bio = view.findViewById(R.id.cambiaBio2_textView);
-       // Bio.setText(SharedPreferencesManager.read(SharedPreferencesManager.AGE,null));
+       
         Bio.setText(SharedPref.getString("bio",null));
         testoBio = view.findViewById(R.id.cambiaBio2_textView);
         testoBio.setOnClickListener(new View.OnClickListener() {
@@ -111,18 +113,10 @@ public class SettingsFragment extends Fragment {
 
                         Editable testo = edittext.getText();
                         SharedPref.putString("bio",testo.toString());
-                        //SharedPreferencesManager.write(SharedPreferencesManager.AGE, testo.toString());
-                       // Bio.setText(SharedPreferencesManager.read(SharedPreferencesManager.AGE,null));
+                       
                         Bio.setText(SharedPref.getString("bio",null));
 
-                        //testoBio.setText(testo);
-
-                        //OR
-                        // String YouEditTextValue = edittext.getText().toString();
-                    }
-                });
-                // SharedPreferencesManager.write(SharedPreferencesManager.AGE, testo);
-                //  Bio.setText(SharedPreferencesManager.read(SharedPreferencesManager.AGE,null));
+                     
 
                 alert.setNegativeButton("No Option", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
@@ -134,12 +128,8 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-
-
-
     return view;
-
-
-    }}
+    }
+ }
 
 

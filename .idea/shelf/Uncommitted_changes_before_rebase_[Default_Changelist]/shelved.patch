@@ -1,0 +1,218 @@
+Index: app/src/main/java/com/example/progetto_lso_b/MembriAsyncTask.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.progetto_lso_b;\r\n\r\nimport android.content.Context;\r\nimport android.os.AsyncTask;\r\nimport android.util.Log;\r\nimport android.widget.Toast;\r\n\r\nimport org.osmdroid.views.MapView;\r\n\r\nimport java.net.Socket;\r\n\r\npublic class MembriAsyncTask extends AsyncTask {\r\n    private MapView map=null;\r\n    Context context;\r\n    private SocketClass sock;\r\n\r\n\r\n    public MembriAsyncTask(MapView map, Context ctx){\r\n        this.context=ctx;\r\n        this.map=map;\r\n    }\r\n\r\n    public MembriAsyncTask(Context ctx){\r\n        this.context=ctx;\r\n    }\r\n\r\n    @Override\r\n    protected Object doInBackground(Object[] objects) {\r\n        this.sock= SocketClass.getInstance();\r\n        Log.d(\"YOU\",\"siamo in doInBackground\");\r\n        sock.writeData(\"exit\");\r\n        Log.d(\"YOU\",\"andata bene la scrittura\");\r\n        String result=sock.readData(String.class);\r\n        Log.d(\"YOU\",\"andata bene la lettura\");\r\n        return result;\r\n    }\r\n\r\n\r\n    protected void onPostExecute(String risposta) {\r\n        super.onPostExecute(risposta);\r\n        Toast.makeText(context,risposta,Toast.LENGTH_SHORT);\r\n        this.sock=SocketClass.getInstance();\r\n        this.sock.closeSocket();\r\n        //effettua operazioni post async/restituisce il risultato di tale\r\n    }\r\n\r\n    @Override\r\n    protected void onProgressUpdate(Object[] values) {\r\n        super.onProgressUpdate(values);\r\n        //aggiorna il main thread\r\n    }\r\n\r\n    @Override\r\n    protected void onPreExecute() {\r\n        //carica le informazioni prima di eseguire l'async\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/progetto_lso_b/MembriAsyncTask.java	(revision f552e0b4d9afcdf8ee23e4f4393f8cae42a160e4)
++++ app/src/main/java/com/example/progetto_lso_b/MembriAsyncTask.java	(date 1620851455400)
+@@ -8,9 +8,11 @@
+ import org.osmdroid.views.MapView;
+ 
+ import java.net.Socket;
++import java.net.SocketAddress;
+ 
+ public class MembriAsyncTask extends AsyncTask {
+     private MapView map=null;
++    private double latitude,longitude;
+     Context context;
+     private SocketClass sock;
+ 
+@@ -20,27 +22,28 @@
+         this.map=map;
+     }
+ 
+-    public MembriAsyncTask(Context ctx){
++    public MembriAsyncTask(Context ctx,double latitude, double longitude){
++        this.latitude=latitude;
++        this.longitude=longitude;
+         this.context=ctx;
+     }
+ 
+     @Override
+     protected Object doInBackground(Object[] objects) {
+-        this.sock= SocketClass.getInstance();
++        sock=SocketClass.getInstance();
++        String result;
+         Log.d("YOU","siamo in doInBackground");
+-        sock.writeData("exit");
+-        Log.d("YOU","andata bene la scrittura");
+-        String result=sock.readData(String.class);
+-        Log.d("YOU","andata bene la lettura");
++        sock.writeData("92");
++        sock= SocketClass.getInstance();
++        result = sock.readData();
+         return result;
+     }
+ 
+ 
+     protected void onPostExecute(String risposta) {
+         super.onPostExecute(risposta);
+-        Toast.makeText(context,risposta,Toast.LENGTH_SHORT);
+-        this.sock=SocketClass.getInstance();
+-        this.sock.closeSocket();
++        Toast.makeText(context,risposta,Toast.LENGTH_SHORT).show();
++        sock.closeSocket();
+         //effettua operazioni post async/restituisce il risultato di tale
+     }
+ 
+Index: app/src/main/java/com/example/progetto_lso_b/SearchFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.progetto_lso_b;\r\n\r\nimport androidx.core.app.ActivityCompat;\r\nimport androidx.core.content.ContextCompat;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport android.Manifest;\r\nimport android.app.Activity;\r\nimport android.content.Context;\r\nimport android.content.pm.PackageManager;\r\nimport android.location.Criteria;\r\nimport android.location.Location;\r\nimport android.location.LocationManager;\r\nimport android.os.Bundle;\r\nimport android.preference.PreferenceManager;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.Toast;\r\n\r\nimport org.osmdroid.api.IMapController;\r\nimport org.osmdroid.config.Configuration;\r\nimport org.osmdroid.tileprovider.tilesource.TileSourceFactory;\r\nimport org.osmdroid.util.GeoPoint;\r\nimport org.osmdroid.views.MapView;\r\nimport org.osmdroid.views.overlay.Marker;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n\r\npublic class SearchFragment extends Fragment {\r\n\r\n    Location location;\r\n    private double latitudine, longitudine;\r\n    private MapView map = null;\r\n    private static final String[] permessi = new String[]{\r\n            Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE};\r\n    private final static int requestcode = 1;\r\n\r\n\r\n    public SearchFragment() {\r\n    }\r\n\r\n\r\n    private Location getLocation() {\r\n\r\n        Location bestLocation = null;\r\n        Location l;\r\n\r\n        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);\r\n        //ottengo tutti i provider disponibili dal manager di locazione (gps, network etc..)\r\n        List<String> providers = locationManager.getProviders(true);\r\n        /*\r\n         *controllo se sono stati dati i permessi:\r\n         *se sono stati dati: procede con l'esecuzione e carica la locazione\r\n         * se non sono stati dati non carica la mappa fino a quando non si accetteranno e richieded stesso i permessi non dati\r\n         */\r\n        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&\r\n                ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {\r\n            ActivityCompat.requestPermissions(getActivity(), permessi, requestcode);\r\n            return null;\r\n        } else {\r\n            /*\r\n             *Per ogni provider così ottenuto, ne ottengo l'ultima mia \"posizione\" nota a questi e li confronto con gli altri provider ottenuti.\r\n             *La locazione più precisa verrà salvata in una variabile di tipo Location per poi essere ritornata dal metodo.\r\n             */\r\n            for (String provider : providers) {\r\n                l = locationManager.getLastKnownLocation(provider);\r\n                if (l != null && (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy())) {\r\n                    bestLocation = l;\r\n                }\r\n            }\r\n        }\r\n        return bestLocation;\r\n    }\r\n\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        MembriAsyncTask task= new MembriAsyncTask(getActivity().getApplicationContext());\r\n        task.execute();\r\n    }\r\n\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n\r\n        View view = inflater.inflate(R.layout.fragment_search, container, false);\r\n        //anche qui controllo se sono stati dati i permessi; qualora non siano dati non carico la mappa ma richiedo l'autorizzazione dei permessi\r\n        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&\r\n                ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {\r\n            ActivityCompat.requestPermissions(getActivity(), MainActivity.getPermessi(), MainActivity.getRequestcode());\r\n            return view;\r\n        } else {\r\n            /*invoco il metodo sopra-implementato che ci consente di ricavare la miglior locazione tra i vari provider;\r\n             *qualora la locazione sia nulla verrà mostrato un Toasr con un messaggio di avvertimento che la posizione è nulla e ritornerà la view senza aver caricato la mappa.\r\n             *Invece, qualora venga allocata la locazione, si ottengono la latitudine e la longitudine della posizione.\r\n             */\r\n            location = getLocation();\r\n            if (location != null) {\r\n                latitudine = location.getLatitude();\r\n                longitudine = location.getLongitude();\r\n            } else {\r\n                Toast.makeText(getContext(), \"locazione nulla\", Toast.LENGTH_SHORT);\r\n                return view;\r\n            }\r\n            //si inizializza la configurazione in osmdroid\r\n            Configuration.getInstance().load(getContext(), PreferenceManager.getDefaultSharedPreferences(getContext()));\r\n            //si \"carica la mappa\" dalla view, assegnandone il tipo e le varie funzionalità come ad esempio la possibilità di usare il multi-touch\r\n            map = view.findViewById(R.id.map);\r\n            map.setTileSource(TileSourceFactory.MAPNIK);\r\n            map.setMultiTouchControls(true);\r\n\r\n            //si ottiene il controller per potter settare alcune caratteristiche come lo zoom iniziale e la locazione geografica che verrà mostrata all'inizio\r\n            IMapController mapController = map.getController();\r\n            mapController.setZoom(18.5);\r\n            //si istanzia un oggetto GeoPoint per poter stabilire un punto da segnare sulla mappa\r\n            GeoPoint startPoint = new GeoPoint(latitudine, longitudine);\r\n            //si setta la posizione iniziale da mostrare nella mappa\r\n            mapController.setCenter(startPoint);\r\n            //si crea un marker da mostrare alla mappa, utile per capire visivamente dove si trova il punto\r\n            Marker myMarker = new Marker(map);\r\n            myMarker.setPosition(startPoint);\r\n            myMarker.setDraggable(false);\r\n            myMarker.setAnchor(Marker.ANCHOR_TOP, Marker.ANCHOR_LEFT);\r\n            map.getOverlays().add(myMarker);\r\n\r\n            return view;\r\n        }\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/progetto_lso_b/SearchFragment.java	(revision f552e0b4d9afcdf8ee23e4f4393f8cae42a160e4)
++++ app/src/main/java/com/example/progetto_lso_b/SearchFragment.java	(date 1620748008162)
+@@ -18,6 +18,8 @@
+ import android.view.ViewGroup;
+ import android.widget.Toast;
+ 
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
+ import org.osmdroid.api.IMapController;
+ import org.osmdroid.config.Configuration;
+ import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+@@ -43,6 +45,7 @@
+     }
+ 
+ 
++    @Nullable
+     private Location getLocation() {
+ 
+         Location bestLocation = null;
+@@ -79,11 +82,11 @@
+     @Override
+     public void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+-        MembriAsyncTask task= new MembriAsyncTask(getActivity().getApplicationContext());
++        MembriAsyncTask task= new MembriAsyncTask(getContext(),latitudine,longitudine);
+         task.execute();
+     }
+ 
+-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
+                              Bundle savedInstanceState) {
+ 
+         View view = inflater.inflate(R.layout.fragment_search, container, false);
+@@ -102,7 +105,7 @@
+                 latitudine = location.getLatitude();
+                 longitudine = location.getLongitude();
+             } else {
+-                Toast.makeText(getContext(), "locazione nulla", Toast.LENGTH_SHORT);
++                Toast.makeText(getContext(), "locazione nulla", Toast.LENGTH_SHORT).show();
+                 return view;
+             }
+             //si inizializza la configurazione in osmdroid
+Index: app/src/main/java/com/example/progetto_lso_b/SocketClass.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.progetto_lso_b;\r\n\r\nimport android.util.Log;\r\n\r\nimport java.io.DataInputStream;\r\nimport java.io.DataOutputStream;\r\nimport java.io.IOException;\r\nimport java.net.Socket;\r\n\r\npublic class SocketClass { //singleton per la socket\r\n    private static Socket sock=null;\r\n    private static SocketClass socket;\r\n    private static DataOutputStream dataOutputStream=null;\r\n    private static DataInputStream dataInputStream=null;\r\n\r\n\r\n    private SocketClass(){}\r\n    public static SocketClass getInstance() {\r\n        if (sock == null) {\r\n            try {\r\n                sock = new Socket(\"51.144.166.40\" , 3557);\r\n                Log.d(\"SOCKET\",\"Riuscita la connessione!\");\r\n            } catch (IOException e) {\r\n                Log.e(\"SOCKET\",\"Errore stabilimento connessione con il server!\");\r\n            }\r\n        }\r\n        return socket;\r\n    }\r\n\r\n    public static void writeData(String value){\r\n        try {\r\n            dataOutputStream=new DataOutputStream(sock.getOutputStream());\r\n            dataOutputStream.writeBytes(value);\r\n            dataOutputStream.close();\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n            Log.e(\"DATAOUTPUTSTREAM\",\"Impossibile ricavare l'outputstream dalla socket!\");\r\n        }\r\n    }\r\n\r\n    public static String readData(Class<?> type){\r\n        String value;\r\n        try {\r\n            dataInputStream=new DataInputStream(sock.getInputStream());\r\n            if(type == int.class){\r\n                value = String.valueOf(dataInputStream.readInt());\r\n            }\r\n            else if(type == String.class){\r\n                value = dataInputStream.readUTF();//leggere stringhe in formato UTF\r\n            }\r\n            else if(type == Double.class){\r\n                value = String.valueOf(dataInputStream.readDouble());\r\n            }\r\n            else throw new IllegalStateException();\r\n            dataInputStream.close();\r\n            return value;\r\n        } catch (IOException e ) {\r\n            e.printStackTrace();\r\n            Log.e(\"DATAINPUTSTREAM\",\"Impossibile ricavare l'inputstream dalla socket!\");\r\n            return null;\r\n        } catch(IllegalStateException e){\r\n            e.printStackTrace();\r\n            Log.e(\"DATAINPUTSTREAM\",\"Tipo non riconosciuto!\");\r\n            return null;\r\n        }\r\n    }\r\n\r\n    public static void closeSocket(){\r\n        try {\r\n            sock.close();\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/progetto_lso_b/SocketClass.java	(revision f552e0b4d9afcdf8ee23e4f4393f8cae42a160e4)
++++ app/src/main/java/com/example/progetto_lso_b/SocketClass.java	(date 1620986651232)
+@@ -5,62 +5,57 @@
+ import java.io.DataInputStream;
+ import java.io.DataOutputStream;
+ import java.io.IOException;
++import java.net.InetSocketAddress;
+ import java.net.Socket;
++import java.net.SocketAddress;
+ 
+ public class SocketClass { //singleton per la socket
+-    private static Socket sock=null;
++    private static Socket sock;
+     private static SocketClass socket;
+-    private static DataOutputStream dataOutputStream=null;
+-    private static DataInputStream dataInputStream=null;
++    private static final SocketAddress address= new InetSocketAddress("51.144.166.40", 3557);
+ 
+ 
+-    private SocketClass(){}
++    private SocketClass() {
++    }
++
+     public static SocketClass getInstance() {
+         if (sock == null) {
+             try {
+-                sock = new Socket("51.144.166.40" , 3557);
+-                Log.d("SOCKET","Riuscita la connessione!");
++                sock = new Socket("51.144.166.40", 3557);
++                Log.d("SOCKET", "Riuscita la connessione!");
+             } catch (IOException e) {
+-                Log.e("SOCKET","Errore stabilimento connessione con il server!");
++                Log.e("SOCKET", "Errore stabilimento connessione con il server!");
+             }
+         }
+         return socket;
+     }
+ 
+-    public static void writeData(String value){
++    public static void writeData(String value) {
+         try {
+-            dataOutputStream=new DataOutputStream(sock.getOutputStream());
++            DataOutputStream dataOutputStream = new DataOutputStream(sock.getOutputStream());
+             dataOutputStream.writeBytes(value);
+-            dataOutputStream.close();
++            if(!sock.isConnected())
++                sock.connect(address);
++            sock.shutdownOutput();
++            Log.d("YOUMAN", "andata bene la scrittura");
+         } catch (IOException e) {
+             e.printStackTrace();
+-            Log.e("DATAOUTPUTSTREAM","Impossibile ricavare l'outputstream dalla socket!");
++            Log.e("DATAOUTPUTSTREAM", "Impossibile ricavare l'outputstream dalla socket!");
+         }
+     }
+ 
+-    public static String readData(Class<?> type){
++    public static String readData() {
+         String value;
++        byte[] stringa = new byte[256];
+         try {
+-            dataInputStream=new DataInputStream(sock.getInputStream());
+-            if(type == int.class){
+-                value = String.valueOf(dataInputStream.readInt());
+-            }
+-            else if(type == String.class){
+-                value = dataInputStream.readUTF();//leggere stringhe in formato UTF
+-            }
+-            else if(type == Double.class){
+-                value = String.valueOf(dataInputStream.readDouble());
+-            }
+-            else throw new IllegalStateException();
+-            dataInputStream.close();
++            DataInputStream dataInputStream = new DataInputStream(sock.getInputStream());
++            dataInputStream.read(stringa);
++            value = new String(stringa);
++            value = value.replaceAll("\u0000", "");
++            Log.d("YOUMAN", "lettura andata a buon fine: "+value);
+             return value;
+-        } catch (IOException e ) {
++        } catch (IOException e) {
+             e.printStackTrace();
+-            Log.e("DATAINPUTSTREAM","Impossibile ricavare l'inputstream dalla socket!");
+-            return null;
+-        } catch(IllegalStateException e){
+-            e.printStackTrace();
+-            Log.e("DATAINPUTSTREAM","Tipo non riconosciuto!");
+             return null;
+         }
+     }
+@@ -68,10 +63,9 @@
+     public static void closeSocket(){
+         try {
+             sock.close();
+-        } catch (IOException e) {
++        }catch (IOException e) {
+             e.printStackTrace();
+         }
+     }
+ 
+-
+ }
+\ No newline at end of file

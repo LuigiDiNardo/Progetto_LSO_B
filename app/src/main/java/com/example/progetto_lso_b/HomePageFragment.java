@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.regex.Pattern;
@@ -21,7 +22,6 @@ public class HomePageFragment extends AppCompatActivity {
     private EditText cognomeEditText;
     private Button natoButton;
     private EditText usernameEditText;
-    private boolean checkNome, checkCognome, checkUsername, checkNascita;
     //public static final String SHARED_PREFS = "sharedPrefs";
     //public static final String USER = "user";
 
@@ -70,16 +70,13 @@ public class HomePageFragment extends AppCompatActivity {
                     if (nome.length() == 0) {
                         tv.setText("Non può essere vuoto!");
                         tv.setVisibility(View.VISIBLE);
-                        checkNome = false;
                     } else {
                         Pattern pattern = Pattern.compile("[a-zA-Z]+");
                         if (!pattern.matcher(nome).find()) {
                             tv.setText("Non sono ammessi caratteri speciali\nal di fuori delle lettere 'accentate'");
                             tv.setVisibility(View.VISIBLE);
-                            checkNome = false;
                         } else {
                             tv.setVisibility(View.INVISIBLE);
-                            checkNome = true;
                         }
                     }
                 }
@@ -94,16 +91,14 @@ public class HomePageFragment extends AppCompatActivity {
                     if (cognome.length() == 0) {
                         tv.setText("Non può essere vuoto!");
                         tv.setVisibility(View.VISIBLE);
-                        checkCognome = false;
                     } else {
                         Pattern pattern = Pattern.compile("[a-zA-Z]+[a-zA-Z]+");
                         if (!pattern.matcher(cognome).find()) {
                             tv.setText("Non sono ammessi caratteri speciali\nal di fuori delle lettere 'accentate'");
                             tv.setVisibility(View.VISIBLE);
-                            checkCognome = false;
                         } else {
                             tv.setVisibility(View.INVISIBLE);
-                            checkCognome = true;
+
                         }
                     }
                 }
@@ -120,15 +115,12 @@ public class HomePageFragment extends AppCompatActivity {
                         tv.setText("Non può essere vuoto!");
                         tv.setVisibility(View.VISIBLE);
                         tv.setText(text);
-                        checkUsername = false;
                     } else {
                         Pattern pattern = Pattern.compile("\\w+");
                         if (!pattern.matcher(username).find()) {
                             tv.setVisibility(View.VISIBLE);
-                            checkUsername = false;
                         } else {
                             tv.setVisibility(View.INVISIBLE);
-                            checkUsername = true;
                         }
                     }
                 }
@@ -152,11 +144,15 @@ public class HomePageFragment extends AppCompatActivity {
                             if(year<1921 || year>2006){
                                 tv.setText("Devi avere tra i 99 ed i 16 anni\nper usare l'app");
                                 tv.setVisibility(View.VISIBLE);
-                                checkNascita=false;
                             }
                             else{
-                                tv.setVisibility(View.INVISIBLE);
-                                checkNascita=true;
+                                if(natoButton.getText().toString().equals("Scegli una data")){
+                                    tv.setText("Devi scegliere una data!");
+                                    tv.setVisibility(View.VISIBLE);
+                                }
+                                else {
+                                    tv.setVisibility(View.INVISIBLE);
+                                }
                             }
                         }
                     }, anno, mese+1, giorno);
@@ -166,23 +162,22 @@ public class HomePageFragment extends AppCompatActivity {
             });
 
 
-
-
             procediButton.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
+                    username = usernameEditText.getText().toString();
+                    nome = nomeEditText.getText().toString();
+                    nascita = natoButton.getText().toString();
+                    cognome = cognomeEditText.getText().toString();
 
-                    if (checkCognome && checkNascita && checkNome && checkUsername) {
-                        username = usernameEditText.getText().toString();
-                        nome = nomeEditText.getText().toString();
-                        nascita = natoButton.getText().toString();
-                        cognome = cognomeEditText.getText().toString();
-
+                    if (username.isEmpty() || nome.isEmpty() || cognome.isEmpty() || nascita.equals("Scegli una data")){
+                        Toast.makeText(getApplicationContext(),"Completa i campi prima di procedere!", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
                         saveData(username, nome, cognome, nascita, true);
                         Intent intent = new Intent(HomePageFragment.this, MainActivity.class);
                         startActivity(intent);
-
                     }
                 }
             });

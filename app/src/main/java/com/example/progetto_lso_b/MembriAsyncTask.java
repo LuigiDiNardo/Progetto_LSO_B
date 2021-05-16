@@ -8,10 +8,12 @@ import android.widget.Toast;
 import org.osmdroid.views.MapView;
 
 import java.net.Socket;
+import java.net.SocketAddress;
 
 public class
 MembriAsyncTask extends AsyncTask {
     private MapView map=null;
+    private double latitude,longitude;
     Context context;
     private SocketClass sock;
 
@@ -21,27 +23,27 @@ MembriAsyncTask extends AsyncTask {
         this.map=map;
     }
 
-    public MembriAsyncTask(Context ctx){
+    public MembriAsyncTask(Context ctx,double latitude, double longitude){
+        this.latitude=latitude;
+        this.longitude=longitude;
         this.context=ctx;
     }
 
     @Override
     protected Object doInBackground(Object[] objects) {
-        this.sock= SocketClass.getInstance();
+        sock=SocketClass.getInstance();
+        String result;
         Log.d("YOU","siamo in doInBackground");
-        sock.writeData("exit");
-        Log.d("YOU","andata bene la scrittura");
-        String result=sock.readData(String.class);
-        Log.d("YOU","andata bene la lettura");
+        sock.writeData("92");
+        result = sock.readData();
         return result;
     }
 
 
     protected void onPostExecute(String risposta) {
         super.onPostExecute(risposta);
-        Toast.makeText(context,risposta,Toast.LENGTH_SHORT);
-        this.sock=SocketClass.getInstance();
-        this.sock.closeSocket();
+        Toast.makeText(context,risposta,Toast.LENGTH_SHORT).show();
+        sock.closeSocket();
         //effettua operazioni post async/restituisce il risultato di tale
     }
 
