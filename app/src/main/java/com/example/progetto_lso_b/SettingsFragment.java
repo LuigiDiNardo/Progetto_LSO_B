@@ -110,13 +110,11 @@ public class SettingsFragment extends Fragment {
 
                 alert.setPositiveButton("Yes Option", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-
                         Editable testo = edittext.getText();
-                        SharedPref.putString("bio",testo.toString());
-                       
-                        Bio.setText(SharedPref.getString("bio",null));
-
-                     
+                        SharedPref.putString("bio", testo.toString());
+                        Bio.setText(SharedPref.getString("bio", null));
+                    }
+                });
 
                 alert.setNegativeButton("No Option", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
@@ -131,5 +129,6 @@ public class SettingsFragment extends Fragment {
     return view;
     }
  }
+
 
 
